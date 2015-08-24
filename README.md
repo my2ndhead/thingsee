@@ -10,12 +10,9 @@ The Thingsee App for Splunk collects all Thingsee One metrics and presents them 
 ## Installation
 
 - Install Splunk >=6.2 
-- Install https://splunkbase.splunk.com/app/1901/
-- Download the Thingsee Technology Add-On from https://github.com/my2ndhead/TA-thingsee/archive/master.zip
-- Unzip the master.zip to $SPLUNK_HOME/apps
-- Rename thingsee-master to thingsee (GitHub adds "-master" suffix, we don't want that)
-- Download the Thingsee App from https://github.com/my2ndhead/thingsee/archive/master.zip
-- Rename TA-thingsee-master to TA-thingsee (GitHub adds a "-master" suffix, we don't want that)
+- Install Protocol Modular Input from  https://splunkbase.splunk.com/app/1901/
+- Install TA-thingsee from https://splunkbase.splunk.com/app/2853/
+- Install Thingsee App from https://splunkbase.splunk.com/app/2854/
 - Restart Splunk
 - Login to Splunk and go to Setting -> Data inputs -> Protocol Data Inputs
 - Enable and/or adjust the thingsee input. By default, Splunk will listen to Port 8079/tcp
