@@ -1,0 +1,53 @@
+<form refresh="60">
+  <label>Location</label>
+  <row>
+    <panel>
+      <map>
+        <title>Location</title>
+        <search>
+          <query>eventtype="thingsee_location"  | eval mvzipped=mvzip(property,value,":") | eval altitude_string=mvindex(mvzipped,mvfind(mvzipped,"altitude"))  | eval longitude_string=mvindex(mvzipped,mvfind(mvzipped,"longitude"))  | eval latitude_string=mvindex(mvzipped,mvfind(mvzipped,"latitude")) | rex field=altitude_string ":(?&lt;altitude&gt;\S+)" | rex field=longitude_string ":(?&lt;longitude&gt;\S+)" | rex field=latitude_string ":(?&lt;latitude&gt;\S+)" | stats latest(altitude) as altitude latest(latitude) as latitude latest(longitude) as longitude |geostats latfield=latitude longfield=longitude count</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="mapping.choroplethLayer.colorBins">5</option>
+        <option name="mapping.choroplethLayer.colorMode">auto</option>
+        <option name="mapping.choroplethLayer.maximumColor">0xDB5800</option>
+        <option name="mapping.choroplethLayer.minimumColor">0x2F25BA</option>
+        <option name="mapping.choroplethLayer.neutralPoint">0</option>
+        <option name="mapping.choroplethLayer.shapeOpacity">0.75</option>
+        <option name="mapping.choroplethLayer.showBorder">1</option>
+        <option name="mapping.data.maxClusters">100</option>
+        <option name="mapping.drilldown">all</option>
+        <option name="mapping.map.center">(0,0)</option>
+        <option name="mapping.map.panning">true</option>
+        <option name="mapping.map.scrollZoom">false</option>
+        <option name="mapping.map.zoom">2</option>
+        <option name="mapping.markerLayer.markerMaxSize">50</option>
+        <option name="mapping.markerLayer.markerMinSize">10</option>
+        <option name="mapping.markerLayer.markerOpacity">0.8</option>
+        <option name="mapping.showTiles">1</option>
+        <option name="mapping.tileLayer.maxZoom">7</option>
+        <option name="mapping.tileLayer.minZoom">0</option>
+        <option name="mapping.tileLayer.tileOpacity">1</option>
+        <option name="mapping.type">marker</option>
+        <option name="drilldown">all</option>
+      </map>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>eventtype="thingsee_location"  | eval mvzipped=mvzip(property,value,":") | eval altitude_string=mvindex(mvzipped,mvfind(mvzipped,"altitude"))  | eval longitude_string=mvindex(mvzipped,mvfind(mvzipped,"longitude"))  | eval latitude_string=mvindex(mvzipped,mvfind(mvzipped,"latitude")) | rex field=altitude_string ":(?&lt;altitude&gt;\S+)" | rex field=longitude_string ":(?&lt;longitude&gt;\S+)" | rex field=latitude_string ":(?&lt;latitude&gt;\S+)" | stats latest(_time) as _time latest(altitude) as altitude latest(latitude) as latitude latest(longitude) as longitude</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="drilldown">cell</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="count">10</option>
+      </table>
+    </panel>
+  </row>
+</form>
