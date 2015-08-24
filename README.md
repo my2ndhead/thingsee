@@ -30,3 +30,7 @@ The Thingsee App for Splunk collects all Thingsee One metrics and presents them 
 ## Limitations
 
 - Currently only one Thingsee One device can be monitored.
+
+## License
+
+Thingsee App for Splunk and Technology Add-On for Thingsee are licensed under CC BY-NC-SA 4.0 http://creativecommons.org/licenses/by-nc-sa/4.0/
