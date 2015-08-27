@@ -24,6 +24,19 @@ The Thingsee App for Splunk collects all Thingsee One metrics and presents them 
 - **v1.0.0**    /       2015-08-24
         - First Release   
 
+- **v1.1.0**   /        2015-08-27
+        - Second Release
+
+
+## Changelog
+
+- **v1.1.0**  
+	- More of everything
+	- More charts for more sensor data
+        - Changed energy dashboard
+        - Removed auto-refresh from panels
+        - Minor bug fixes and improvements
+
 ## Limitations
 
 - Currently only one Thingsee One device can be monitored.
