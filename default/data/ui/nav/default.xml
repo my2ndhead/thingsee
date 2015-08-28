@@ -3,6 +3,7 @@
   <view name="acceleration" />
   <view name="environment" />
   <view name="location" />
+  <view name="speed" />
   <view name="search"/>
   <view name="about"/>
 </nav>
