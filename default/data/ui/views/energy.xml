@@ -5,11 +5,11 @@
       <single>
         <title>Charger</title>
         <search>
-          <query>eventtype="thingsee_energy_charger_connected" |stats latest(value) as value | eval status=if(value==1, "Connected", "Disconnected")</query>
+          <query>eventtype="thingsee_energy_charger_connected" |stats latest(is_charger_connected) as is_charger_connected | eval is_charger_connected=if(is_charger_connected==1, "Connected", "Disconnected")</query>
           <earliest>-24h@h</earliest>
           <latest>now</latest>
         </search>
-        <option name="field">status</option>
+        <option name="field">is_charger_connected</option>
         <option name="colorBy">value</option>
         <option name="colorMode">none</option>
         <option name="numberPrecision">0</option>
@@ -29,7 +29,7 @@
       <chart>
         <title>Current Battery Level</title>
         <search>
-          <query>eventtype=thingsee_energy_current_battery_level |stats latest(value) as current_battery_level</query>
+          <query>eventtype=thingsee_energy_current_battery_level |stats latest(battery_level) as battery_level</query>
           <earliest>-24h@h</earliest>
           <latest>now</latest>
         </search>
@@ -83,7 +83,7 @@
       <chart>
         <title>Battery Level</title>
         <search>
-          <query>eventtype=thingsee_energy_current_battery_level |timechart avg(value) as battery_level</query>
+          <query>eventtype=thingsee_energy_current_battery_level |timechart avg(battery_level) as battery_level</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>

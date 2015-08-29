@@ -2,7 +2,7 @@
   <label>About</label>
   <row>
     <panel>
-      <title>Thingsee App for Splunk 1.0</title>
+      <title>Thingsee App for Splunk</title>
       <html>
         <h2>Author</h2>
         Mika Borner, mika.borner@gmail.com
