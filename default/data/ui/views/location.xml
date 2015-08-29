@@ -87,7 +87,7 @@
       <chart>
         <title>Accuracy</title>
         <search>
-          <query>eventtype=thingsee_location_accuracy |timechart avg(value) as accuracy</query>
+          <query>eventtype=thingsee_location_accuracy |timechart avg(accuracy) as accuracy</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -119,7 +119,7 @@
       <chart>
         <title>Geofence</title>
         <search>
-          <query>eventtype="thingsee_location_geofence_inside" |timechart max(value) as inside</query>
+          <query>eventtype="thingsee_location_geofence_inside" |timechart max(is_inside_geofence) as is_inside_geofence</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>

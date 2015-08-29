@@ -1,3 +1,15 @@
 [views/location]
 version = 6.2.5
-modtime = 1440790744.580002000
+modtime = 1440825324.011194000
+
+[views/energy]
+version = 6.2.5
+modtime = 1440824689.355190000
+
+[views/acceleration]
+version = 6.2.5
+modtime = 1440825071.107215000
+
+[views/environment]
+version = 6.2.5
+modtime = 1440825251.248207000

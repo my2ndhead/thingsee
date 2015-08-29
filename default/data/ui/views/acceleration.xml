@@ -14,7 +14,7 @@
       <chart>
         <title>Impact (Force)</title>
         <search>
-          <query>eventtype="thingsee_acceleration_impact" |timechart avg(value)  as avg_force max(value) as max_force</query>
+          <query>eventtype="thingsee_acceleration_impact" |timechart avg(impact) as avg_impact max(impact) as max_impact</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -42,7 +42,7 @@
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
         <option name="charting.legend.placement">right</option>
         <option name="charting.axisTitleY.text">g</option>
-        <option name="charting.chart.overlayFields">max_force</option>
+        <option name="charting.chart.overlayFields">max_impact</option>
         <option name="charting.axisTitleY2.text">g</option>
       </chart>
     </panel>
@@ -87,7 +87,7 @@
       <chart>
         <title>Longitudinal Acceleration</title>
         <search>
-          <query>eventtype="thingsee_acceleration_longitudinal" |timechart avg(value)  as avg_force max(value) as max_force</query>
+          <query>eventtype="thingsee_acceleration_longitudinal" |timechart avg(accceleration_longitudinal) as avg_accceleration_longitudinal max(accceleration_longitudinal) as max_accceleration_longitudinal</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -111,16 +111,16 @@
         <option name="charting.drilldown">all</option>
         <option name="charting.layout.splitSeries">0</option>
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
+        <option name="charting.legend.placement">bottom</option>
         <option name="charting.axisTitleY.text">g</option>
-        <option name="charting.chart.overlayFields">max_force</option>
+        <option name="charting.chart.overlayFields">max_accceleration_longitudinal</option>
       </chart>
     </panel>
     <panel>
       <chart>
         <title>Lateral Acceleration</title>
         <search>
-          <query>eventtype="thingsee_acceleration_lateral" |timechart avg(value)  as avg_force max(value) as max_force</query>
+          <query>eventtype="thingsee_acceleration_lateral" |timechart avg(acceleration_lateral)  as avg_acceleration_lateral max(acceleration_lateral) as max_acceleration_lateral</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -144,16 +144,16 @@
         <option name="charting.drilldown">all</option>
         <option name="charting.layout.splitSeries">0</option>
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
+        <option name="charting.legend.placement">bottom</option>
         <option name="charting.axisTitleY.text">g</option>
-        <option name="charting.chart.overlayFields">max_force</option>
+        <option name="charting.chart.overlayFields">max_acceleration_lateral</option>
       </chart>
     </panel>
     <panel>
       <chart>
         <title>Vertical Acceleration</title>
         <search>
-          <query>eventtype="thingsee_acceleration_vertical" |timechart avg(value) as avg_force max(value) as max_force</query>
+          <query>eventtype="thingsee_acceleration_vertical" |timechart avg(acceleration_vertical) as avg_acceleration_vertical max(acceleration_vertical) as max_acceleration_vertical</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -177,9 +177,9 @@
         <option name="charting.drilldown">all</option>
         <option name="charting.layout.splitSeries">0</option>
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
-        <option name="charting.legend.placement">right</option>
+        <option name="charting.legend.placement">bottom</option>
         <option name="charting.axisTitleY.text">g</option>
-        <option name="charting.chart.overlayFields">max_force</option>
+        <option name="charting.chart.overlayFields">max_acceleration_vertical</option>
       </chart>
     </panel>
   </row>

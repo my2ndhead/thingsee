@@ -14,7 +14,7 @@
       <chart>
         <title>Temperature</title>
         <search>
-          <query>eventtype="thingsee_environment_temperature" | timechart avg(value) as temperature</query>
+          <query>eventtype="thingsee_environment_temperature" | timechart avg(temperature) as temperature</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -25,7 +25,7 @@
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisX.scale">linear</option>
         <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.enabled">false</option>
         <option name="charting.axisY2.scale">inherit</option>
         <option name="charting.chart">line</option>
         <option name="charting.chart.bubbleMaximumSize">50</option>
@@ -48,7 +48,7 @@
       <chart>
         <title>Air Pressure</title>
         <search>
-          <query>eventtype="thingsee_environment_airpressure" | timechart avg(value) as air_pressure</query>
+          <query>eventtype="thingsee_environment_airpressure" | timechart avg(air_pressure) as air_pressure</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -59,7 +59,7 @@
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisX.scale">linear</option>
         <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.enabled">false</option>
         <option name="charting.axisY2.scale">inherit</option>
         <option name="charting.chart">line</option>
         <option name="charting.chart.bubbleMaximumSize">50</option>
@@ -84,7 +84,7 @@
       <chart>
         <title>Humidity</title>
         <search>
-          <query>eventtype="thingsee_environment_humidity" | timechart avg(value) as humidity</query>
+          <query>eventtype="thingsee_environment_humidity" | timechart avg(humidity) as humidity</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -95,7 +95,7 @@
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisX.scale">linear</option>
         <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.enabled">false</option>
         <option name="charting.axisY2.scale">inherit</option>
         <option name="charting.chart">line</option>
         <option name="charting.chart.bubbleMaximumSize">50</option>
@@ -118,7 +118,7 @@
       <chart>
         <title>Luminance</title>
         <search>
-          <query>eventtype=thingsee_environment_luminance |timechart avg(value) as avg_luminance</query>
+          <query>eventtype=thingsee_environment_luminance |timechart avg(ambient_light) as ambient_light</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -144,6 +144,8 @@
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
         <option name="charting.legend.placement">right</option>
         <option name="charting.axisTitleY.text">lux</option>
+        <option name="charting.axisY.maximumNumber">100</option>
+        <option name="charting.axisY.minimumNumber">0</option>
       </chart>
     </panel>
   </row>
