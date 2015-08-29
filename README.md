@@ -28,6 +28,7 @@ The Thingsee App for Splunk collects all Thingsee One metrics and presents them 
         - Second Release
 
 - **v1.2.0**   /	2015-08-29
+        - Third Release
 
 
 ## Changelog
