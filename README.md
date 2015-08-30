@@ -50,6 +50,10 @@ The Thingsee App for Splunk collects all Thingsee One metrics and presents them 
 - ** v1.2.1**
         - bugfix for ambient light y-axis scale
 
+- ** v1.2.2**
+        - bugfix for location dashboard title / panel
+
+
 ## Limitations
 
 - Currently only one Thingsee One device can be monitored.
