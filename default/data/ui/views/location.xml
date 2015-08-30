@@ -1,5 +1,5 @@
 <form>
-  <label>Current Location</label>
+  <label>Location</label>
   <fieldset submitButton="false">
     <input type="time" token="timepicker">
       <label></label>
@@ -12,7 +12,7 @@
   <row>
     <panel>
       <map>
-        <title>Location</title>
+        <title>Current Location</title>
         <search>
           <query>eventtype="thingsee_location"  |stats  latest(latitude) as latitude latest(longitude) as longitude count</query>
           <earliest>$timepicker.earliest$</earliest>
