@@ -8,13 +8,27 @@
         <latest>now</latest>
       </default>
     </input>
+    <input type="dropdown" token="dvc_id_token" searchWhenChanged="true">
+      <label>Device ID:</label>
+      <search>
+        <query>eventtype="thingsee_index" |fields dvc_id | stats count by dvc_id</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <fieldForLabel>dvc_id</fieldForLabel>
+      <fieldForValue>dvc_id</fieldForValue>
+      <prefix>dvc_id="*</prefix>
+      <suffix>"</suffix>
+      <choice value="unknown">unknown</choice>
+      <default>unknown</default>
+    </input>
   </fieldset>
   <row>
     <panel>
       <chart>
         <title>Temperature</title>
         <search>
-          <query>eventtype="thingsee_environment_temperature" | timechart avg(temperature) as temperature</query>
+          <query>eventtype="thingsee_environment_temperature" $dvc_id_token$ | timechart avg(temperature) as temperature</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -48,7 +62,7 @@
       <chart>
         <title>Air Pressure</title>
         <search>
-          <query>eventtype="thingsee_environment_airpressure" | timechart avg(air_pressure) as air_pressure</query>
+          <query>eventtype="thingsee_environment_airpressure" $dvc_id_token$ | timechart avg(air_pressure) as air_pressure</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -84,7 +98,7 @@
       <chart>
         <title>Humidity</title>
         <search>
-          <query>eventtype="thingsee_environment_humidity" | timechart avg(humidity) as humidity</query>
+          <query>eventtype="thingsee_environment_humidity" $dvc_id_token$ | timechart avg(humidity) as humidity</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -118,7 +132,7 @@
       <chart>
         <title>Luminance</title>
         <search>
-          <query>eventtype=thingsee_environment_luminance |timechart avg(ambient_light) as ambient_light</query>
+          <query>eventtype=thingsee_environment_luminance $dvc_id_token$ |timechart avg(ambient_light) as ambient_light</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>

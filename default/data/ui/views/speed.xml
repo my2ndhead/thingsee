@@ -8,13 +8,27 @@
         <latest>now</latest>
       </default>
     </input>
+    <input type="dropdown" token="dvc_id_token" searchWhenChanged="true">
+      <label>Device ID:</label>
+      <search>
+        <query>eventtype="thingsee_index" |fields dvc_id | stats count by dvc_id</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <fieldForLabel>dvc_id</fieldForLabel>
+      <fieldForValue>dvc_id</fieldForValue>
+      <prefix>dvc_id="*</prefix>
+      <suffix>"</suffix>
+      <choice value="unknown">unknown</choice>
+      <default>unknown</default>
+    </input>
   </fieldset>
   <row>
     <panel>
       <chart>
         <title>Speed</title>
         <search>
-          <query>eventtype=thingsee_speed_gpsspeed |timechart avg(speed) as avg_speed max(speed) as max_speed</query>
+          <query>eventtype=thingsee_speed_gpsspeed $dvc_id_token$ |timechart avg(speed) as avg_speed max(speed) as max_speed</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>

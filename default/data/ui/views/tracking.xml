@@ -8,6 +8,20 @@
         <latest>now</latest>
       </default>
     </input>
+    <input type="dropdown" token="dvc_id_token" searchWhenChanged="true">
+      <label>Device ID:</label>
+      <search>
+        <query>eventtype="thingsee_index" |fields dvc_id | stats count by dvc_id</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <fieldForLabel>dvc_id</fieldForLabel>
+      <fieldForValue>dvc_id</fieldForValue>
+      <prefix>dvc_id="*</prefix>
+      <suffix>"</suffix>
+      <choice value="unknown">unknown</choice>
+      <default>unknown</default>
+    </input>
   </fieldset>
   <search id="locations_base_search">
     <query>eventtype="thingsee_location" |stats count by latitude, longitude, _time |sort _time | eval coordinates=latitude.",".longitude  |autoregress coordinates as previous_coordinates | eval previous_coordinates=ifnull(previous_coordinates, coordinates, previous_coordinates) | haversine originField=previous_coordinates inputFieldLat=latitude inputFieldLon=longitude units=km</query>
@@ -58,6 +72,16 @@
         <title>End Time</title>
         <search base="locations_base_search">
           <query>stats latest(_time) as endtime | convert timeformat="%d.%m.%Y %H:%M:%S" ctime(endtime) AS endtime</query>
+        </search>
+        <option name="wrap">undefined</option>
+        <option name="rowNumbers">undefined</option>
+        <option name="drilldown">none</option>
+        <option name="linkView">search</option>
+      </single>
+      <single>
+        <title>Total Time</title>
+        <search base="locations_base_search">
+          <query>stats range(_time) as totaltime | eval totaltime=tostring(totaltime,"duration")</query>
         </search>
         <option name="wrap">undefined</option>
         <option name="rowNumbers">undefined</option>

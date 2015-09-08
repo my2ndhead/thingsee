@@ -1,11 +1,34 @@
 <form>
   <label>Energy</label>
+  <fieldset submitButton="false">
+    <input type="time" token="timepicker" searchWhenChanged="true">
+      <label>Timerange:</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="dvc_id_token" searchWhenChanged="true">
+      <label>Device ID:</label>
+      <search>
+        <query>eventtype="thingsee_index"  |fields dvc_id | stats count by dvc_id</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <fieldForLabel>dvc_id</fieldForLabel>
+      <fieldForValue>dvc_id</fieldForValue>
+      <prefix>dvc_id="*</prefix>
+      <suffix>"</suffix>
+      <choice value="unknown">unknown</choice>
+      <default>unknown</default>
+    </input>
+  </fieldset>
   <row>
     <panel>
       <single>
         <title>Charger</title>
         <search>
-          <query>eventtype="thingsee_energy_charger_connected" |stats latest(is_charger_connected) as is_charger_connected | eval is_charger_connected=if(is_charger_connected==1, "Connected", "Disconnected")</query>
+          <query>eventtype="thingsee_energy_charger_connected" $dvc_id_token$ |stats latest(is_charger_connected) as is_charger_connected | eval is_charger_connected=if(is_charger_connected==1, "Connected", "Disconnected")</query>
           <earliest>-24h@h</earliest>
           <latest>now</latest>
         </search>
@@ -29,7 +52,7 @@
       <chart>
         <title>Current Battery Level</title>
         <search>
-          <query>eventtype=thingsee_energy_current_battery_level |stats latest(battery_level) as battery_level</query>
+          <query>eventtype=thingsee_energy_current_battery_level $dvc_id_token$ |stats latest(battery_level) as battery_level</query>
           <earliest>-24h@h</earliest>
           <latest>now</latest>
         </search>
@@ -73,17 +96,10 @@
       </chart>
     </panel>
     <panel>
-      <input type="time" token="timepicker" searchWhenChanged="true">
-        <label></label>
-        <default>
-          <earliest>-24h@h</earliest>
-          <latest>now</latest>
-        </default>
-      </input>
       <chart>
         <title>Battery Level</title>
         <search>
-          <query>eventtype=thingsee_energy_current_battery_level |timechart avg(battery_level) as battery_level</query>
+          <query>eventtype=thingsee_energy_current_battery_level $dvc_id_token$ |timechart avg(battery_level) as battery_level</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
