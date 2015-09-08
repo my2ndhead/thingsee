@@ -8,13 +8,27 @@
         <latest>now</latest>
       </default>
     </input>
+    <input type="dropdown" token="dvc_id_token" searchWhenChanged="true">
+      <label>Device ID:</label>
+      <search>
+        <query>eventtype="thingsee_index" |fields dvc_id | stats count by dvc_id</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <fieldForLabel>dvc_id</fieldForLabel>
+      <fieldForValue>dvc_id</fieldForValue>
+      <prefix>dvc_id="*</prefix>
+      <suffix>"</suffix>
+      <choice value="unknown">unknown</choice>
+      <default>unknown</default>
+    </input>
   </fieldset>
   <row>
     <panel>
       <map>
         <title>Current Location</title>
         <search>
-          <query>eventtype="thingsee_location"  |stats  latest(latitude) as latitude latest(longitude) as longitude count</query>
+          <query>eventtype="thingsee_location" $dvc_id_token$ |stats latest(latitude) as latitude latest(longitude) as longitude count</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -49,7 +63,7 @@
       <chart>
         <title>Altitude</title>
         <search>
-          <query>eventtype="thingsee_location"  | timechart avg(altitude) as altitude</query>
+          <query>eventtype="thingsee_location" $dvc_id_token$ | timechart avg(altitude) as altitude</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -87,7 +101,7 @@
       <chart>
         <title>Accuracy</title>
         <search>
-          <query>eventtype=thingsee_location_accuracy |timechart avg(accuracy) as accuracy</query>
+          <query>eventtype=thingsee_location_accuracy $dvc_id_token$ |timechart avg(accuracy) as accuracy</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -119,7 +133,7 @@
       <chart>
         <title>Geofence</title>
         <search>
-          <query>eventtype="thingsee_location_geofence_inside" |timechart max(is_inside_geofence) as is_inside_geofence</query>
+          <query>eventtype="thingsee_location_geofence_inside" $dvc_id_token$ |timechart max(is_inside_geofence) as is_inside_geofence</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>

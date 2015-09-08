@@ -2,11 +2,25 @@
   <label>Acceleration</label>
   <fieldset submitButton="false">
     <input type="time" token="timepicker" searchWhenChanged="true">
-      <label></label>
+      <label>Timerange:</label>
       <default>
         <earliest>-24h@h</earliest>
         <latest>now</latest>
       </default>
+    </input>
+    <input type="dropdown" token="dvc_id_token" searchWhenChanged="true">
+      <label>Device ID:</label>
+      <search>
+        <query>eventtype="thingsee_index" |fields dvc_id | stats count by dvc_id</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <fieldForLabel>dvc_id</fieldForLabel>
+      <fieldForValue>dvc_id</fieldForValue>
+      <prefix>dvc_id="*</prefix>
+      <suffix>"</suffix>
+      <choice value="unknown">unknown</choice>
+      <default>unknown</default>
     </input>
   </fieldset>
   <row>
@@ -14,7 +28,7 @@
       <chart>
         <title>Impact (Force)</title>
         <search>
-          <query>eventtype="thingsee_acceleration_impact" |timechart avg(impact) as avg_impact max(impact) as max_impact</query>
+          <query>eventtype="thingsee_acceleration_impact" $dvc_id_token$ |timechart avg(impact) as avg_impact max(impact) as max_impact</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -52,7 +66,7 @@
       <chart>
         <title>Impact (Occurence)</title>
         <search>
-          <query>eventtype="thingsee_acceleration_impact" |timechart count</query>
+          <query>eventtype="thingsee_acceleration_impact" $dvc_id_token$ |timechart count</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -87,7 +101,7 @@
       <chart>
         <title>Longitudinal Acceleration</title>
         <search>
-          <query>eventtype="thingsee_acceleration_longitudinal" |timechart avg(accceleration_longitudinal) as avg_accceleration_longitudinal max(accceleration_longitudinal) as max_accceleration_longitudinal</query>
+          <query>eventtype="thingsee_acceleration_longitudinal" $dvc_id_token$ |timechart avg(accceleration_longitudinal) as avg_accceleration_longitudinal max(accceleration_longitudinal) as max_accceleration_longitudinal</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -120,7 +134,7 @@
       <chart>
         <title>Lateral Acceleration</title>
         <search>
-          <query>eventtype="thingsee_acceleration_lateral" |timechart avg(acceleration_lateral)  as avg_acceleration_lateral max(acceleration_lateral) as max_acceleration_lateral</query>
+          <query>eventtype="thingsee_acceleration_lateral" $dvc_id_token$ |timechart avg(acceleration_lateral)  as avg_acceleration_lateral max(acceleration_lateral) as max_acceleration_lateral</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
@@ -153,7 +167,7 @@
       <chart>
         <title>Vertical Acceleration</title>
         <search>
-          <query>eventtype="thingsee_acceleration_vertical" |timechart avg(acceleration_vertical) as avg_acceleration_vertical max(acceleration_vertical) as max_acceleration_vertical</query>
+          <query>eventtype="thingsee_acceleration_vertical" $dvc_id_token$ |timechart avg(acceleration_vertical) as avg_acceleration_vertical max(acceleration_vertical) as max_acceleration_vertical</query>
           <earliest>$timepicker.earliest$</earliest>
           <latest>$timepicker.latest$</latest>
         </search>
