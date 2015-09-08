@@ -42,6 +42,7 @@ The Thingsee App for Splunk collects all Thingsee One metrics and presents them 
   - Save the form
   - Under Thingsee Creator, select your purpose, and enable the action to send events to the cloud
   - Copy the input for every thingsee device
+  - Note: AuthTokens may expire from time to time. Currently you have to manually update them.
 
 - Now you should see the dashboards filling up in the Splunk Thingsee App
 - Happy Splunking !
