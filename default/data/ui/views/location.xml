@@ -19,8 +19,7 @@
       <fieldForValue>dvc_id</fieldForValue>
       <prefix>dvc_id="*</prefix>
       <suffix>"</suffix>
-      <choice value="unknown">unknown</choice>
-      <default>unknown</default>
+      <selectFirstChoice>true</selectFirstChoice>
     </input>
   </fieldset>
   <row>
