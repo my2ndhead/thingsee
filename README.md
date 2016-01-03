@@ -2,7 +2,7 @@
 
 - **Authors**:          Mika Borner <mika.borner@gmail.com>
 - **Description**:      Thingsee App for Splunk
-- **Version**:          1.3.0
+- **Version**:          1.3.1
 
 ## Introduction
 The Thingsee App for Splunk collects all Thingsee One metrics and presents them on dashboards.
@@ -86,6 +86,9 @@ The Thingsee App for Splunk collects all Thingsee One metrics and presents them 
         - MQTT Support
 	- Multidevice Support
         - Tracking Dashboard shows Total Time
+
+- ** v1.3.1**
+        - Bugfixed duplicate dropdown entries
 
 ## License
 
